@@ -1,332 +1,749 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THE BOSS LOUNGE - Management</title>
+
+<title>THE BOSS LOUNGE | Management</title>
 
 <style>
-*{box-sizing:border-box}
 
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#0b0b0b;
-    color:white;
+:root{
+--gold:#d4af37;
+--gold2:#f1d77a;
+--black:#080808;
+--dark:#111;
+--panel:#181818;
+--panel2:#202020;
+--border:#303030;
+--text:#fff;
+--muted:#aaa;
+--green:#2ecc71;
+--red:#e74c3c;
+--blue:#3498db;
 }
 
+*{
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:var(--black);
+color:var(--text);
+}
+
+/* HEADER */
+
 header{
-    background:#111;
-    border-bottom:1px solid #333;
-    padding:18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:sticky;
-    top:0;
-    z-index:10;
+height:70px;
+background:#0d0d0d;
+border-bottom:1px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 22px;
+position:sticky;
+top:0;
+z-index:100;
 }
 
 .logo{
-    color:#d4af37;
-    font-size:20px;
-    font-weight:bold;
-    letter-spacing:2px;
+font-size:19px;
+font-weight:900;
+letter-spacing:2px;
+color:var(--gold);
 }
 
-#clock{
-    font-size:13px;
-    color:#bbb;
+.logo span{
+display:block;
+font-size:10px;
+letter-spacing:4px;
+color:#aaa;
+margin-top:3px;
 }
+
+.clock{
+font-size:13px;
+color:#bbb;
+text-align:right;
+}
+
+/* LAYOUT */
 
 .layout{
-    display:flex;
-    min-height:calc(100vh - 70px);
+display:flex;
+min-height:calc(100vh - 70px);
 }
 
-nav{
-    width:230px;
-    background:#111;
-    padding:12px;
-    border-right:1px solid #292929;
+/* SIDEBAR */
+
+.sidebar{
+width:245px;
+background:#101010;
+border-right:1px solid var(--border);
+padding:15px;
+flex-shrink:0;
 }
 
-nav button{
-    width:100%;
-    padding:13px;
-    margin:4px 0;
-    border:0;
-    border-radius:8px;
-    background:transparent;
-    color:white;
-    text-align:left;
-    cursor:pointer;
+.nav-title{
+font-size:11px;
+color:#777;
+text-transform:uppercase;
+letter-spacing:2px;
+margin:10px 8px;
 }
 
-nav button:hover,
-nav button.active{
-    background:#292929;
-    color:#d4af37;
+.nav-btn{
+width:100%;
+border:0;
+background:transparent;
+color:#ddd;
+padding:13px 14px;
+border-radius:9px;
+margin:3px 0;
+text-align:left;
+font-size:14px;
+cursor:pointer;
+transition:.2s;
 }
+
+.nav-btn:hover{
+background:#242424;
+color:var(--gold);
+}
+
+.nav-btn.active{
+background:linear-gradient(90deg,#29230f,#202020);
+color:var(--gold);
+border-left:3px solid var(--gold);
+}
+
+/* MAIN */
 
 main{
-    flex:1;
-    padding:20px;
+flex:1;
+padding:24px;
+min-width:0;
 }
 
 .section{
-    display:none;
+display:none;
+animation:fade .2s ease;
 }
 
 .section.active{
-    display:block;
+display:block;
 }
 
-h2{
-    color:#d4af37;
+@keyframes fade{
+from{opacity:.3;transform:translateY(3px)}
+to{opacity:1;transform:none}
 }
+
+.page-title{
+margin:0 0 5px;
+font-size:25px;
+color:var(--gold);
+}
+
+.page-subtitle{
+margin:0 0 20px;
+color:#888;
+font-size:13px;
+}
+
+/* CARDS */
 
 .cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:15px;
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(180px,1fr));
+gap:14px;
 }
 
-.card,
-.panel{
-    background:#171717;
-    border:1px solid #303030;
-    border-radius:12px;
-    padding:18px;
+.card{
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:13px;
+padding:18px;
+min-height:105px;
 }
 
 .card small{
-    color:#aaa;
+color:#999;
+font-size:12px;
 }
 
-.value{
-    font-size:24px;
-    font-weight:bold;
-    margin-top:8px;
+.card .value{
+font-size:22px;
+font-weight:800;
+margin-top:10px;
+color:#fff;
 }
+
+.card.gold-card .value{
+color:var(--gold);
+}
+
+.card.green-card .value{
+color:var(--green);
+}
+
+.card.red-card .value{
+color:var(--red);
+}
+
+/* PANELS */
 
 .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:15px;
-    margin-top:15px;
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(300px,1fr));
+gap:16px;
+margin-top:16px;
+}
+
+.panel{
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:13px;
+padding:18px;
+}
+
+.panel h3{
+margin-top:0;
+color:#eee;
+}
+
+/* BUTTONS */
+
+button{
+font-family:inherit;
+}
+
+.btn{
+border:0;
+border-radius:8px;
+padding:11px 15px;
+cursor:pointer;
+font-weight:600;
+}
+
+.btn-gold{
+background:var(--gold);
+color:#111;
+}
+
+.btn-gold:hover{
+background:var(--gold2);
+}
+
+.btn-dark{
+background:#292929;
+color:white;
+}
+
+.btn-green{
+background:var(--green);
+color:#07150d;
+}
+
+.btn-red{
+background:var(--red);
+color:white;
+}
+
+.btn-blue{
+background:var(--blue);
+color:white;
+}
+
+.actions{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+}
+
+/* FORMS */
+
+label{
+display:block;
+font-size:12px;
+color:#aaa;
+margin-bottom:5px;
 }
 
 input,
 select{
-    width:100%;
-    padding:12px;
-    margin:7px 0 14px;
-    background:#0d0d0d;
-    border:1px solid #444;
-    border-radius:7px;
-    color:white;
+width:100%;
+background:#0c0c0c;
+border:1px solid #414141;
+border-radius:8px;
+padding:12px;
+color:white;
+outline:none;
+margin-bottom:13px;
 }
 
-button{
-    padding:11px 15px;
-    border:0;
-    border-radius:8px;
-    cursor:pointer;
+input:focus,
+select:focus{
+border-color:var(--gold);
 }
 
-.gold{
-    background:#d4af37;
-    color:#111;
-    font-weight:bold;
-}
+/* TABLE */
 
-.dark{
-    background:#292929;
-    color:white;
-}
-
-.danger{
-    background:#b83232;
-    color:white;
-}
-
-.total{
-    color:#d4af37;
-    font-size:24px;
-    font-weight:bold;
+.table-wrapper{
+width:100%;
+overflow-x:auto;
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
+width:100%;
+border-collapse:collapse;
+min-width:600px;
 }
 
 th,
 td{
-    padding:11px;
-    border-bottom:1px solid #333;
-    text-align:left;
+padding:12px 10px;
+border-bottom:1px solid #303030;
+text-align:left;
+font-size:13px;
 }
 
 th{
-    color:#d4af37;
+color:var(--gold);
+font-size:12px;
+text-transform:uppercase;
 }
+
+tr:hover{
+background:#1e1e1e;
+}
+
+/* BADGES */
 
 .badge{
-    display:inline-block;
-    padding:5px 8px;
-    border-radius:20px;
-    background:#333;
-    font-size:12px;
+display:inline-block;
+padding:5px 9px;
+border-radius:20px;
+font-size:11px;
+background:#333;
 }
 
+.badge-new{
+background:#3a2d08;
+color:var(--gold2);
+}
+
+.badge-prep{
+background:#172b3b;
+color:#64b5f6;
+}
+
+.badge-served{
+background:#153523;
+color:#61e294;
+}
+
+.badge-paid{
+background:#183b28;
+color:#67e39a;
+}
+
+.badge-cancel{
+background:#3b1818;
+color:#ff7777;
+}
+
+/* CART */
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+background:#111;
+border:1px solid #292929;
+border-radius:8px;
+padding:10px;
+margin-bottom:7px;
+}
+
+.cart-name{
+font-weight:600;
+}
+
+.cart-price{
+color:var(--gold);
+white-space:nowrap;
+}
+
+.total-box{
+margin-top:15px;
+padding:15px;
+background:#0f0f0f;
+border:1px solid #3b3219;
+border-radius:9px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.total-label{
+color:#aaa;
+}
+
+.total-value{
+color:var(--gold);
+font-size:22px;
+font-weight:900;
+}
+
+/* ALERT */
+
 .alert{
-    color:#ff7777;
+padding:11px;
+border-radius:8px;
+background:#281818;
+border:1px solid #542626;
+color:#ff8585;
+margin-bottom:8px;
 }
 
 .success{
-    color:#50d890;
+color:var(--green);
 }
 
-.actions{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
+.empty{
+color:#777;
+padding:15px 0;
 }
 
-@media(max-width:700px){
+/* STATUS */
 
-    .layout{
-        display:block;
-    }
-
-    nav{
-        position:fixed;
-        bottom:0;
-        left:0;
-        right:0;
-        width:100%;
-        height:68px;
-        display:flex;
-        overflow-x:auto;
-        z-index:20;
-        border-top:1px solid #333;
-    }
-
-    nav button{
-        min-width:110px;
-        text-align:center;
-        font-size:11px;
-    }
-
-    main{
-        padding-bottom:90px;
-    }
-
-    .logo{
-        font-size:15px;
-    }
+.order-card{
+background:#111;
+border:1px solid #303030;
+border-radius:10px;
+padding:14px;
+margin-bottom:10px;
 }
+
+.order-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.order-table{
+font-weight:800;
+color:var(--gold);
+}
+
+.order-total{
+font-size:18px;
+font-weight:800;
+}
+
+.order-items{
+color:#aaa;
+font-size:12px;
+margin:10px 0;
+line-height:1.7;
+}
+
+.order-actions{
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+}
+
+/* PRINT */
+
+@media print{
+
+header,
+.sidebar,
+.no-print{
+display:none!important;
+}
+
+main{
+padding:0;
+}
+
+body{
+background:white;
+color:black;
+}
+
+.panel,
+.card{
+border:1px solid #ccc;
+background:white;
+color:black;
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+header{
+height:62px;
+padding:0 14px;
+}
+
+.logo{
+font-size:15px;
+}
+
+.logo span{
+font-size:8px;
+}
+
+.layout{
+display:block;
+}
+
+.sidebar{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+padding:5px;
+display:flex;
+overflow-x:auto;
+z-index:200;
+border-right:0;
+border-top:1px solid var(--border);
+}
+
+.nav-title{
+display:none;
+}
+
+.nav-btn{
+min-width:105px;
+height:58px;
+margin:0 2px;
+font-size:10px;
+text-align:center;
+padding:8px 4px;
+border-left:0!important;
+}
+
+.nav-btn.active{
+border-top:2px solid var(--gold);
+}
+
+main{
+padding:17px;
+padding-bottom:90px;
+}
+
+.page-title{
+font-size:21px;
+}
+
+.cards{
+grid-template-columns:
+repeat(2,minmax(0,1fr));
+gap:9px;
+}
+
+.card{
+padding:13px;
+min-height:90px;
+}
+
+.card .value{
+font-size:17px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.panel{
+padding:14px;
+}
+
+}
+
+/* VERY SMALL */
+
+@media(max-width:390px){
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.nav-btn{
+min-width:92px;
+}
+
+}
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- HEADER -->
 
 <header>
 
 <div class="logo">
 THE BOSS LOUNGE
+<span>MANAGEMENT</span>
 </div>
 
-<div id="clock"></div>
+<div class="clock" id="clock">
+--
+</div>
 
 </header>
+
 
 
 <div class="layout">
 
 
-<nav>
+<!-- SIDEBAR -->
 
-<button class="active" onclick="showSection('dashboard',this)">
-📊 Tableau de bord
+<nav class="sidebar">
+
+<div class="nav-title">
+Menu principal
+</div>
+
+<button class="nav-btn active"
+onclick="showSection('dashboard',this)">
+📊<br>Dashboard
 </button>
 
-<button onclick="showSection('orders',this)">
-🧾 Commandes
+<button class="nav-btn"
+onclick="showSection('orders',this)">
+🧾<br>Commandes
 </button>
 
-<button onclick="showSection('cash',this)">
-💰 Caisse
+<button class="nav-btn"
+onclick="showSection('cash',this)">
+💰<br>Caisse
 </button>
 
-<button onclick="showSection('stock',this)">
-📦 Stock
+<button class="nav-btn"
+onclick="showSection('stock',this)">
+📦<br>Stock
 </button>
 
-<button onclick="showSection('staff',this)">
-👥 Personnel
+<button class="nav-btn"
+onclick="showSection('staff',this)">
+👥<br>Personnel
 </button>
 
-<button onclick="showSection('accounting',this)">
-📚 Comptabilité
+<button class="nav-btn"
+onclick="showSection('accounting',this)">
+📚<br>Comptabilité
 </button>
 
-<button onclick="showSection('bank',this)">
-🏦 Banque
+<button class="nav-btn"
+onclick="showSection('bank',this)">
+🏦<br>Banque
 </button>
 
-<button onclick="showSection('documents',this)">
-🧾 Documents
+<button class="nav-btn"
+onclick="showSection('documents',this)">
+🧾<br>Documents
 </button>
 
-<button onclick="showSection('users',this)">
-🔐 Utilisateurs
+<button class="nav-btn"
+onclick="showSection('users',this)">
+🔐<br>Utilisateurs
 </button>
 
 </nav>
 
 
+
 <main>
 
 
-<!-- TABLEAU DE BORD -->
+<!-- DASHBOARD -->
 
 <section id="dashboard" class="section active">
 
-<h2>📊 Tableau de bord</h2>
+<h1 class="page-title">
+📊 Tableau de bord
+</h1>
+
+<p class="page-subtitle">
+Vue générale de THE BOSS LOUNGE
+</p>
+
 
 <div class="cards">
 
-<div class="card">
-<small>Chiffre d'affaires</small>
-<div class="value" id="dashboardCA">0 GNF</div>
+<div class="card gold-card">
+<small>CA encaissé</small>
+<div class="value"
+id="dashboardCA">
+0 GNF
 </div>
-
-<div class="card">
-<small>Ventes</small>
-<div class="value" id="dashboardSales">0</div>
-</div>
-
-<div class="card">
-<small>Dépenses</small>
-<div class="value" id="dashboardExpenses">0 GNF</div>
-</div>
-
-<div class="card">
-<small>Bénéfice</small>
-<div class="value" id="dashboardProfit">0 GNF</div>
 </div>
 
 <div class="card">
 <small>Commandes</small>
-<div class="value" id="dashboardOrders">0</div>
+<div class="value"
+id="dashboardOrders">
+0
+</div>
+</div>
+
+<div class="card red-card">
+<small>Dépenses</small>
+<div class="value"
+id="dashboardExpenses">
+0 GNF
+</div>
+</div>
+
+<div class="card green-card">
+<small>Bénéfice</small>
+<div class="value"
+id="dashboardProfit">
+0 GNF
+</div>
 </div>
 
 <div class="card">
-<small>Caisse</small>
-<div class="value" id="dashboardCash">FERMÉE</div>
+<small>Commandes en attente</small>
+<div class="value"
+id="dashboardPending">
+0
+</div>
+</div>
+
+<div class="card">
+<small>État caisse</small>
+<div class="value"
+id="dashboardCash">
+FERMÉE
+</div>
 </div>
 
 </div>
@@ -336,7 +753,7 @@ THE BOSS LOUNGE
 
 <div class="panel">
 
-<h3>🔔 Alertes</h3>
+<h3>🔔 Alertes stock</h3>
 
 <div id="alerts">
 Aucune alerte.
@@ -351,19 +768,19 @@ Aucune alerte.
 
 <div class="actions">
 
-<button class="gold"
-onclick="showSection('orders')">
-Nouvelle commande
+<button class="btn btn-gold"
+onclick="goTo('orders')">
+➕ Nouvelle commande
 </button>
 
-<button class="dark"
-onclick="showSection('cash')">
-Caisse
+<button class="btn btn-dark"
+onclick="goTo('cash')">
+💰 Ouvrir caisse
 </button>
 
-<button class="dark"
-onclick="showSection('stock')">
-Stock
+<button class="btn btn-dark"
+onclick="goTo('stock')">
+📦 Voir stock
 </button>
 
 </div>
@@ -380,14 +797,23 @@ Stock
 
 <section id="orders" class="section">
 
-<h2>🧾 Commandes</h2>
+<h1 class="page-title">
+🧾 Commandes
+</h1>
+
+<p class="page-subtitle">
+Création et suivi des commandes
+</p>
+
 
 <div class="grid">
 
 
+<!-- NOUVELLE COMMANDE -->
+
 <div class="panel">
 
-<h3>Nouvelle commande</h3>
+<h3>➕ Nouvelle commande</h3>
 
 <label>
 Numéro de table *
@@ -395,7 +821,8 @@ Numéro de table *
 
 <input
 id="tableNumber"
-placeholder="Exemple : Table 12"
+type="text"
+placeholder="Exemple : 12"
 >
 
 
@@ -403,7 +830,8 @@ placeholder="Exemple : Table 12"
 Produit
 </label>
 
-<select id="productSelect"></select>
+<select id="productSelect">
+</select>
 
 
 <label>
@@ -419,39 +847,71 @@ value="1"
 
 
 <button
-class="gold"
+class="btn btn-gold"
 onclick="addToCart()">
 
-Ajouter
+➕ Ajouter
 
 </button>
 
 
-<h3>
-Total :
-<span class="total" id="orderTotal">
-0 GNF
+<div id="cart"
+style="margin-top:15px">
+</div>
+
+
+<div class="total-box">
+
+<span class="total-label">
+TOTAL
 </span>
-</h3>
 
+<span
+class="total-value"
+id="orderTotal">
 
-<div id="cart"></div>
+0 GNF
+
+</span>
+
+</div>
 
 
 <button
-class="gold"
+class="btn btn-gold"
+style="width:100%;margin-top:12px"
 onclick="saveOrder()">
 
-Enregistrer + WhatsApp
+📱 Enregistrer + WhatsApp
 
 </button>
 
 </div>
 
 
+
+<!-- COMMANDES -->
+
 <div class="panel">
 
-<h3>Commandes récentes</h3>
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+">
+
+<h3>
+📋 Commandes récentes
+</h3>
+
+<button
+class="btn btn-dark"
+onclick="refresh()">
+↻
+</button>
+
+</div>
 
 <div id="ordersList">
 Aucune commande.
@@ -469,7 +929,34 @@ Aucune commande.
 
 <section id="cash" class="section">
 
-<h2>💰 Caisse</h2>
+<h1 class="page-title">
+💰 Caisse
+</h1>
+
+<p class="page-subtitle">
+Gestion des encaissements et dépenses
+</p>
+
+
+<div class="cards">
+
+<div class="card gold-card">
+<small>Solde théorique</small>
+<div class="value"
+id="cashBalance">
+0 GNF
+</div>
+</div>
+
+<div class="card">
+<small>Fond de caisse</small>
+<div class="value"
+id="cashOpening">
+0 GNF
+</div>
+</div>
+
+</div>
 
 
 <div class="grid">
@@ -477,7 +964,9 @@ Aucune commande.
 
 <div class="panel">
 
-<h3>Ouverture / fermeture</h3>
+<h3>
+🔐 Ouverture / fermeture
+</h3>
 
 <label>
 Fond de caisse
@@ -486,28 +975,30 @@ Fond de caisse
 <input
 id="openingCash"
 type="number"
-placeholder="GNF"
+placeholder="Exemple : 500000"
 >
+
 
 <div class="actions">
 
 <button
-class="gold"
+class="btn btn-gold"
 onclick="openCash()">
 
-Ouvrir
+🔓 Ouvrir
 
 </button>
 
 <button
-class="danger"
+class="btn btn-red"
 onclick="closeCash()">
 
-Clôturer
+🔒 Clôturer
 
 </button>
 
 </div>
+
 
 <p id="cashMessage">
 Caisse fermée
@@ -516,9 +1007,12 @@ Caisse fermée
 </div>
 
 
+
 <div class="panel">
 
-<h3>💸 Nouvelle dépense</h3>
+<h3>
+💸 Nouvelle dépense
+</h3>
 
 <label>
 Motif
@@ -526,8 +1020,9 @@ Motif
 
 <input
 id="expenseName"
-placeholder="Exemple : charbon"
+placeholder="Exemple : achat charbon"
 >
+
 
 <label>
 Montant
@@ -539,8 +1034,9 @@ type="number"
 placeholder="GNF"
 >
 
+
 <button
-class="gold"
+class="btn btn-gold"
 onclick="addExpense()">
 
 Enregistrer la dépense
@@ -559,9 +1055,18 @@ Enregistrer la dépense
 
 <section id="stock" class="section">
 
-<h2>📦 Gestion du stock</h2>
+<h1 class="page-title">
+📦 Stock
+</h1>
+
+<p class="page-subtitle">
+Suivi des produits et alertes
+</p>
+
 
 <div class="panel">
+
+<div class="table-wrapper">
 
 <table>
 
@@ -570,17 +1075,22 @@ Enregistrer la dépense
 <tr>
 
 <th>Produit</th>
+<th>Prix</th>
 <th>Stock</th>
 <th>Seuil</th>
+<th>État</th>
 <th>Actions</th>
 
 </tr>
 
 </thead>
 
-<tbody id="stockTable"></tbody>
+<tbody id="stockTable">
+</tbody>
 
 </table>
+
+</div>
 
 </div>
 
@@ -592,9 +1102,18 @@ Enregistrer la dépense
 
 <section id="staff" class="section">
 
-<h2>👥 Personnel & Paie</h2>
+<h1 class="page-title">
+👥 Personnel & Paie
+</h1>
+
+<p class="page-subtitle">
+Gestion des employés
+</p>
+
 
 <div class="panel">
+
+<div class="table-wrapper">
 
 <table>
 
@@ -605,6 +1124,7 @@ Enregistrer la dépense
 <th>Fonction</th>
 <th>Présence</th>
 <th>Salaire</th>
+<th>Action</th>
 </tr>
 
 </thead>
@@ -631,11 +1151,25 @@ Caissière
 —
 </td>
 
+<td>
+
+<button
+class="btn btn-dark"
+onclick="alert('Module présence à compléter.')">
+
+Présence
+
+</button>
+
+</td>
+
 </tr>
 
 </tbody>
 
 </table>
+
+</div>
 
 </div>
 
@@ -647,13 +1181,20 @@ Caissière
 
 <section id="accounting" class="section">
 
-<h2>📚 Comptabilité</h2>
+<h1 class="page-title">
+📚 Comptabilité
+</h1>
+
+<p class="page-subtitle">
+Recettes, dépenses et résultat
+</p>
+
 
 <div class="cards">
 
-<div class="card">
+<div class="card gold-card">
 
-<small>Recettes</small>
+<small>Recettes encaissées</small>
 
 <div
 class="value"
@@ -664,7 +1205,7 @@ id="accountingIncome">
 </div>
 
 
-<div class="card">
+<div class="card red-card">
 
 <small>Dépenses</small>
 
@@ -677,7 +1218,7 @@ id="accountingExpense">
 </div>
 
 
-<div class="card">
+<div class="card green-card">
 
 <small>Résultat</small>
 
@@ -699,22 +1240,31 @@ id="accountingResult">
 
 <section id="bank" class="section">
 
-<h2>🏦 Banque</h2>
+<h1 class="page-title">
+🏦 Banque
+</h1>
+
+<p class="page-subtitle">
+Gestion des opérations bancaires
+</p>
+
 
 <div class="panel">
 
-<h3>Opérations bancaires</h3>
+<h3>
+🏦 Comptes bancaires
+</h3>
 
-<p>
-Gestion des comptes, dépôts, retraits,
-transferts et soldes.
+<p style="color:#aaa">
+Cette partie est préparée pour gérer les comptes,
+dépôts, retraits, transferts et soldes.
 </p>
 
 <button
-class="gold"
-onclick="alert('Module bancaire à compléter.')">
+class="btn btn-gold"
+onclick="alert('Module bancaire à connecter.')">
 
-Nouvelle opération
+➕ Nouvelle opération
 
 </button>
 
@@ -728,23 +1278,40 @@ Nouvelle opération
 
 <section id="documents" class="section">
 
-<h2>🧾 Documents</h2>
+<h1 class="page-title">
+🧾 Documents
+</h1>
+
+<p class="page-subtitle">
+Impression et rapports
+</p>
+
 
 <div class="panel">
 
-<h3>Documents</h3>
+<h3>
+📄 Documents disponibles
+</h3>
 
-<p>
-Factures • Reçus • Rapports • Bulletins de salaire
-</p>
+<div class="actions">
 
 <button
-class="gold"
-onclick="window.print()">
+class="btn btn-gold"
+onclick="printPage()">
 
 🖨️ Imprimer
 
 </button>
+
+<button
+class="btn btn-dark"
+onclick="generateReport()">
+
+📊 Rapport
+
+</button>
+
+</div>
 
 </div>
 
@@ -756,18 +1323,29 @@ onclick="window.print()">
 
 <section id="users" class="section">
 
-<h2>🔐 Utilisateurs & droits</h2>
+<h1 class="page-title">
+🔐 Utilisateurs
+</h1>
+
+<p class="page-subtitle">
+Gestion des rôles et permissions
+</p>
+
 
 <div class="panel">
+
+<div class="table-wrapper">
 
 <table>
 
 <thead>
 
 <tr>
+
 <th>Utilisateur</th>
 <th>Fonction</th>
 <th>Accès</th>
+
 </tr>
 
 </thead>
@@ -783,13 +1361,13 @@ onclick="window.print()">
 <tr>
 <td>Gérant</td>
 <td>Direction</td>
-<td>Dashboard / Caisse / Stock / Rapports</td>
+<td>Dashboard, caisse, stock, rapports</td>
 </tr>
 
 <tr>
 <td>Caissière</td>
 <td>Caisse</td>
-<td>Commandes / Caisse</td>
+<td>Commandes, caisse</td>
 </tr>
 
 <tr>
@@ -807,12 +1385,14 @@ onclick="window.print()">
 <tr>
 <td>Comptable</td>
 <td>Comptabilité</td>
-<td>Comptabilité / Banque / Documents</td>
+<td>Comptabilité, banque, documents</td>
 </tr>
 
 </tbody>
 
 </table>
+
+</div>
 
 </div>
 
@@ -827,18 +1407,24 @@ onclick="window.print()">
 
 <script>
 
-/* =========================
-   DONNÉES
-========================= */
+/* =====================================================
+   CONFIGURATION
+===================================================== */
 
-const STORAGE_KEY = "THE_BOSS_LOUNGE_V1";
+const STORAGE_KEY =
+"THE_BOSS_LOUNGE_MANAGEMENT_V2";
+
+const WHATSAPP =
+"224628323057";
 
 
-let data = JSON.parse(
-localStorage.getItem(STORAGE_KEY)
-) || {
+/* =====================================================
+   DONNEES
+===================================================== */
 
-products: [
+const defaultData={
+
+products:[
 
 {
 name:"Café",
@@ -906,6 +1492,7 @@ minimum:8
 ],
 
 orders:[],
+
 expenses:[],
 
 cash:{
@@ -916,17 +1503,50 @@ opening:0
 };
 
 
+/* =====================================================
+   CHARGEMENT
+===================================================== */
+
+let data;
+
+try{
+
+data=
+JSON.parse(
+localStorage.getItem(STORAGE_KEY)
+);
+
+}catch(error){
+
+data=null;
+
+}
+
+
+if(!data){
+
+data=defaultData;
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(data)
+);
+
+}
+
+
+/* PANIER */
+
 let cart=[];
 
 
-
-/* =========================
+/* =====================================================
    OUTILS
-========================= */
+===================================================== */
 
-function money(number){
+function money(value){
 
-return Number(number || 0)
+return Number(value || 0)
 .toLocaleString("fr-FR")
 +" GNF";
 
@@ -945,49 +1565,107 @@ refresh();
 }
 
 
+function getRevenue(){
 
-/* =========================
+return data.orders
+
+.filter(order=>
+order.status==="Payée"
+)
+
+.reduce(
+(total,order)=>
+total+order.total,
+0
+);
+
+}
+
+
+function getExpenses(){
+
+return data.expenses
+
+.reduce(
+(total,expense)=>
+total+expense.amount,
+0
+);
+
+}
+
+
+/* =====================================================
    NAVIGATION
-========================= */
+===================================================== */
 
 function showSection(id,button){
 
 document
 .querySelectorAll(".section")
 .forEach(section=>{
+
 section.classList.remove("active");
+
 });
 
-document
-.getElementById(id)
-.classList.add("active");
+
+const target=
+document.getElementById(id);
+
+if(target){
+
+target.classList.add("active");
+
+}
 
 
 document
-.querySelectorAll("nav button")
+.querySelectorAll(".nav-btn")
 .forEach(btn=>{
+
 btn.classList.remove("active");
+
 });
 
 
 if(button){
+
 button.classList.add("active");
-}
 
 }
 
+}
 
 
-/* =========================
+function goTo(id){
+
+const button=
+[...document.querySelectorAll(".nav-btn")]
+.find(btn=>
+btn.getAttribute("onclick")
+?.includes("'"+id+"'")
+);
+
+showSection(id,button);
+
+}
+
+
+
+/* =====================================================
    PRODUITS
-========================= */
+===================================================== */
 
 function loadProducts(){
 
 const select=
-document.getElementById("productSelect");
+document.getElementById(
+"productSelect"
+);
 
 select.innerHTML="";
+
 
 data.products.forEach(
 (product,index)=>{
@@ -1010,34 +1688,64 @@ select.appendChild(option);
 
 
 
-/* =========================
+/* =====================================================
    PANIER
-========================= */
+===================================================== */
 
 function addToCart(){
 
-const index=
+const productIndex=
 Number(
-document.getElementById("productSelect").value
+document.getElementById(
+"productSelect"
+).value
 );
 
 const quantity=
-Math.max(
-1,
 Number(
-document.getElementById("quantity").value
-)
+document.getElementById(
+"quantity"
+).value
 );
 
 
-const product=
-data.products[index];
-
-
-if(product.stock < quantity){
+if(!quantity || quantity<1){
 
 alert(
-"Stock insuffisant pour "+product.name
+"Veuillez indiquer une quantité valide."
+);
+
+return;
+
+}
+
+
+const product=
+data.products[productIndex];
+
+
+const alreadyInCart=
+cart
+.filter(item=>
+item.productIndex===productIndex
+)
+.reduce(
+(total,item)=>
+total+item.quantity,
+0
+);
+
+
+if(
+alreadyInCart+quantity
+>
+product.stock
+){
+
+alert(
+"Stock insuffisant pour "+product.name+
+". Stock disponible : "+
+product.stock
 );
 
 return;
@@ -1047,15 +1755,15 @@ return;
 
 cart.push({
 
+productIndex:productIndex,
+
 name:product.name,
 
 price:product.price,
 
 quantity:quantity,
 
-total:product.price*quantity,
-
-productIndex:index
+total:product.price*quantity
 
 });
 
@@ -1073,39 +1781,70 @@ document.getElementById("cart");
 container.innerHTML="";
 
 
+if(cart.length===0){
+
+container.innerHTML=
+"<div class='empty'>Panier vide.</div>";
+
+}
+else{
+
 cart.forEach(
 (item,index)=>{
 
-const line=
-document.createElement("p");
+const div=
+document.createElement("div");
 
-line.innerHTML=
-item.name+
-" × "+
-item.quantity+
-" — "+
-money(item.total)+
-" <button class='dark' onclick='removeCart("+index+")'>✕</button>";
+div.className=
+"cart-item";
 
-container.appendChild(line);
+div.innerHTML=`
+
+<div>
+<div class="cart-name">
+${item.name} × ${item.quantity}
+</div>
+<div style="font-size:11px;color:#777">
+${money(item.price)} / unité
+</div>
+</div>
+
+<div class="cart-price">
+${money(item.total)}
+</div>
+
+<button
+class="btn btn-red"
+onclick="removeFromCart(${index})">
+✕
+</button>
+
+`;
+
+container.appendChild(div);
 
 });
-
-
-const total=
-cart.reduce(
-(sum,item)=>sum+item.total,
-0
-);
-
-document
-.getElementById("orderTotal")
-.textContent=money(total);
 
 }
 
 
-function removeCart(index){
+const total=
+cart.reduce(
+(sum,item)=>
+sum+item.total,
+0
+);
+
+
+document
+.getElementById("orderTotal")
+.textContent=
+money(total);
+
+}
+
+
+function removeFromCart(index){
 
 cart.splice(index,1);
 
@@ -1115,9 +1854,9 @@ renderCart();
 
 
 
-/* =========================
-   ENREGISTRER COMMANDE
-========================= */
+/* =====================================================
+   COMMANDES
+===================================================== */
 
 function saveOrder(){
 
@@ -1150,17 +1889,20 @@ return;
 }
 
 
+/* Vérification stock */
+
 for(const item of cart){
 
+const product=
+data.products[item.productIndex];
+
 if(
-data.products[item.productIndex].stock
-<
-item.quantity
+product.stock<item.quantity
 ){
 
 alert(
 "Stock insuffisant pour "+
-item.name
+product.name
 );
 
 return;
@@ -1174,7 +1916,9 @@ return;
 
 cart.forEach(item=>{
 
-data.products[item.productIndex].stock
+data.products[
+item.productIndex
+].stock
 -=item.quantity;
 
 });
@@ -1182,7 +1926,8 @@ data.products[item.productIndex].stock
 
 const total=
 cart.reduce(
-(sum,item)=>sum+item.total,
+(sum,item)=>
+sum+item.total,
 0
 );
 
@@ -1193,13 +1938,13 @@ id:Date.now(),
 
 table:table,
 
-items:[...cart],
+items:JSON.parse(
+JSON.stringify(cart)
+),
 
 total:total,
 
 status:"Nouvelle",
-
-paid:false,
 
 date:new Date().toISOString()
 
@@ -1209,11 +1954,13 @@ date:new Date().toISOString()
 data.orders.push(order);
 
 
-/* WHATSAPP */
+/* MESSAGE WHATSAPP */
 
 let message=
 "THE BOSS LOUNGE\n"+
+"━━━━━━━━━━━━━━\n"+
 "TABLE : "+table+"\n\n";
+
 
 cart.forEach(item=>{
 
@@ -1229,26 +1976,140 @@ money(item.total)+
 
 
 message+=
-"\nTOTAL : "+
-money(total);
+"\n━━━━━━━━━━━━━━\n"+
+"TOTAL : "+
+money(total)+
+"\n"+
+"Statut : Nouvelle";
 
 
-const whatsappURL=
-"https://wa.me/224628323057?text="+
+const whatsapp=
+"https://wa.me/"+
+WHATSAPP+
+"?text="+
 encodeURIComponent(message);
 
 
+/* Ouvrir WhatsApp */
+
 window.open(
-whatsappURL,
+whatsapp,
 "_blank"
 );
 
+
+/* RESET */
 
 cart=[];
 
 document
 .getElementById("tableNumber")
 .value="";
+
+document
+.getElementById("quantity")
+.value=1;
+
+saveData();
+
+alert(
+"Commande enregistrée avec succès."
+);
+
+}
+
+
+
+/* =====================================================
+   STATUT COMMANDE
+===================================================== */
+
+function nextStatus(orderId){
+
+const order=
+data.orders.find(
+o=>o.id===orderId
+);
+
+
+if(!order)return;
+
+
+const statuses=[
+
+"Nouvelle",
+"Préparation",
+"Servie",
+"Payée"
+
+];
+
+
+const index=
+statuses.indexOf(order.status);
+
+
+if(index<statuses.length-1){
+
+order.status=
+statuses[index+1];
+
+saveData();
+
+}
+
+}
+
+
+function cancelOrder(orderId){
+
+const order=
+data.orders.find(
+o=>o.id===orderId
+);
+
+
+if(!order)return;
+
+
+if(order.status==="Payée"){
+
+alert(
+"Une commande payée ne peut pas être annulée ici."
+);
+
+return;
+
+}
+
+
+if(
+!confirm(
+"Annuler cette commande ?"
+)
+){
+
+return;
+
+}
+
+
+/* RESTITUTION DU STOCK */
+
+order.items.forEach(item=>{
+
+data.products[
+item.productIndex
+].stock
++=item.quantity;
+
+});
+
+
+data.orders=
+data.orders.filter(
+o=>o.id!==orderId
+);
 
 
 saveData();
@@ -1257,23 +2118,183 @@ saveData();
 
 
 
-/* =========================
+/* =====================================================
+   AFFICHAGE COMMANDES
+===================================================== */
+
+function renderOrders(){
+
+const container=
+document.getElementById(
+"ordersList"
+);
+
+
+if(
+data.orders.length===0
+){
+
+container.innerHTML=
+"<div class='empty'>Aucune commande.</div>";
+
+return;
+
+}
+
+
+container.innerHTML=
+data.orders
+.slice()
+.reverse()
+.slice(0,20)
+.map(order=>{
+
+const items=
+order.items
+.map(item=>
+item.name+
+" × "+
+item.quantity
+)
+.join(" • ");
+
+
+let badge="badge-new";
+
+
+if(order.status==="Préparation")
+badge="badge-prep";
+
+if(order.status==="Servie")
+badge="badge-served";
+
+if(order.status==="Payée")
+badge="badge-paid";
+
+
+const next=
+order.status!=="Payée"
+?
+`<button
+class="btn btn-green"
+onclick="nextStatus(${order.id})">
+${order.status==="Nouvelle"
+?"▶ Préparer"
+:
+order.status==="Préparation"
+?"✓ Servir"
+:
+"💰 Marquer payée"}
+</button>`
+:
+"";
+
+
+return`
+
+<div class="order-card">
+
+<div class="order-header">
+
+<div>
+
+<div class="order-table">
+TABLE ${order.table}
+</div>
+
+<div style="font-size:11px;color:#777">
+${formatDate(order.date)}
+</div>
+
+</div>
+
+<div class="order-total">
+${money(order.total)}
+</div>
+
+</div>
+
+
+<div class="order-items">
+${items}
+</div>
+
+
+<div class="order-actions">
+
+<span class="badge ${badge}">
+${order.status}
+</span>
+
+${next}
+
+${
+order.status!=="Payée"
+?
+`<button
+class="btn btn-red"
+onclick="cancelOrder(${order.id})">
+✕ Annuler
+</button>`
+:""
+}
+
+</div>
+
+</div>
+
+`;
+
+})
+.join("");
+
+}
+
+
+
+/* =====================================================
    CAISSE
-========================= */
+===================================================== */
 
 function openCash(){
 
+if(data.cash.open){
+
+alert(
+"La caisse est déjà ouverte."
+);
+
+return;
+
+}
+
+
 const amount=
 Number(
-document.getElementById("openingCash").value
+document.getElementById(
+"openingCash"
+).value
 )||0;
+
+
+if(amount<0){
+
+alert(
+"Montant invalide."
+);
+
+return;
+
+}
 
 
 data.cash={
 
 open:true,
 
-opening:amount
+opening:amount,
+
+openedAt:new Date().toISOString()
 
 };
 
@@ -1292,7 +2313,36 @@ function closeCash(){
 
 if(!data.cash.open){
 
-alert("La caisse est déjà fermée.");
+alert(
+"La caisse est déjà fermée."
+);
+
+return;
+
+}
+
+
+const revenue=
+getRevenue();
+
+
+const expenses=
+getExpenses();
+
+
+const theoretical=
+data.cash.opening+
+revenue-
+expenses;
+
+
+if(
+!confirm(
+"Clôturer la caisse ?\n\n"+
+"Solde théorique : "+
+money(theoretical)
+)
+){
 
 return;
 
@@ -1303,24 +2353,39 @@ data.cash={
 
 open:false,
 
-opening:0
+opening:0,
+
+closedAt:new Date().toISOString()
 
 };
 
 
 saveData();
 
-alert("Caisse clôturée.");
+alert(
+"Caisse clôturée."
+);
 
 }
 
 
 
-/* =========================
+/* =====================================================
    DEPENSES
-========================= */
+===================================================== */
 
 function addExpense(){
+
+if(!data.cash.open){
+
+alert(
+"Vous devez ouvrir la caisse avant d'enregistrer une dépense."
+);
+
+return;
+
+}
+
 
 const name=
 document
@@ -1337,10 +2402,21 @@ document
 );
 
 
-if(!name || !amount){
+if(!name){
 
 alert(
-"Veuillez remplir les informations."
+"Indiquez le motif de la dépense."
+);
+
+return;
+
+}
+
+
+if(!amount || amount<=0){
+
+alert(
+"Indiquez un montant valide."
 );
 
 return;
@@ -1349,6 +2425,8 @@ return;
 
 
 data.expenses.push({
+
+id:Date.now(),
 
 name:name,
 
@@ -1363,7 +2441,6 @@ document
 .getElementById("expenseName")
 .value="";
 
-
 document
 .getElementById("expenseAmount")
 .value="";
@@ -1371,43 +2448,61 @@ document
 
 saveData();
 
+alert(
+"Dépense enregistrée."
+);
+
 }
 
 
 
-/* =========================
+/* =====================================================
    STOCK
-========================= */
+===================================================== */
 
 function updateStock(index,direction){
 
-const quantity=
-Number(
-prompt(
+const product=
+data.products[index];
+
+
+const question=
 direction>0
-?"Quantité à ajouter :"
-:"Quantité à sortir :",
-"1"
-)
+?
+"Quantité à ajouter :"
+:
+"Quantité à sortir :";
+
+
+const value=
+Number(
+prompt(question,"1")
 );
 
 
-if(!quantity || quantity<=0){
+if(!value || value<=0){
 
 return;
 
 }
 
 
-data.products[index].stock
-+=direction*quantity;
+if(
+direction<0 &&
+value>product.stock
+){
 
+alert(
+"Stock insuffisant."
+);
 
-if(data.products[index].stock<0){
-
-data.products[index].stock=0;
+return;
 
 }
+
+
+product.stock
++=direction*value;
 
 
 saveData();
@@ -1415,61 +2510,115 @@ saveData();
 }
 
 
+function renderStock(){
 
-/* =========================
-   ACTUALISATION
-========================= */
-
-function refresh(){
-
-loadProducts();
+const table=
+document.getElementById(
+"stockTable"
+);
 
 
-/* CA */
+table.innerHTML="";
+
+
+data.products.forEach(
+(product,index)=>{
+
+const low=
+product.stock<=product.minimum;
+
+
+const row=
+document.createElement("tr");
+
+
+row.innerHTML=`
+
+<td>
+<strong>${product.name}</strong>
+</td>
+
+<td>
+${money(product.price)}
+</td>
+
+<td>
+<strong>${product.stock}</strong>
+</td>
+
+<td>
+${product.minimum}
+</td>
+
+<td>
+
+${
+low
+?
+"<span class='badge badge-cancel'>⚠️ FAIBLE</span>"
+:
+"<span class='badge badge-paid'>✓ OK</span>"
+}
+
+</td>
+
+<td>
+
+<button
+class="btn btn-gold"
+onclick="updateStock(${index},1)">
++ Entrée
+</button>
+
+<button
+class="btn btn-dark"
+onclick="updateStock(${index},-1)">
+− Sortie
+</button>
+
+</td>
+
+`;
+
+table.appendChild(row);
+
+});
+
+}
+
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function renderDashboard(){
 
 const revenue=
-data.orders
-.filter(order=>order.paid)
-.reduce(
-(sum,order)=>sum+order.total,
-0
-);
-
-
-/* Pour la V1,
-   les commandes peuvent être
-   considérées comme ventes
-*/
-
-const allSales=
-data.orders
-.reduce(
-(sum,order)=>sum+order.total,
-0
-);
-
+getRevenue();
 
 const expenses=
-data.expenses
-.reduce(
-(sum,item)=>sum+item.amount,
-0
-);
-
+getExpenses();
 
 const profit=
-allSales-expenses;
+revenue-expenses;
 
 
-/* DASHBOARD */
+const pending=
+data.orders.filter(
+order=>
+order.status!=="Payée"
+).length;
+
 
 document
 .getElementById("dashboardCA")
-.textContent=money(allSales);
+.textContent=
+money(revenue);
 
 
 document
-.getElementById("dashboardSales")
+.getElementById("dashboardOrders")
 .textContent=
 data.orders.length;
 
@@ -1487,190 +2636,199 @@ money(profit);
 
 
 document
-.getElementById("dashboardOrders")
+.getElementById("dashboardPending")
 .textContent=
-data.orders.length;
+pending;
 
 
 document
 .getElementById("dashboardCash")
 .textContent=
 data.cash.open
-?"OUVERTE"
-:"FERMÉE";
-
-
-/* COMPTABILITÉ */
-
-document
-.getElementById("accountingIncome")
-.textContent=
-money(allSales);
-
-
-document
-.getElementById("accountingExpense")
-.textContent=
-money(expenses);
-
-
-document
-.getElementById("accountingResult")
-.textContent=
-money(profit);
-
-
-/* STOCK */
-
-const stockTable=
-document.getElementById("stockTable");
-
-stockTable.innerHTML="";
-
-
-data.products.forEach(
-(product,index)=>{
-
-const row=
-document.createElement("tr");
-
-const status=
-product.stock<=product.minimum
-?"<span class='alert'>⚠️ FAIBLE</span>"
-:"<span class='success'>OK</span>";
-
-
-row.innerHTML=`
-
-<td>${product.name}</td>
-
-<td>
-${product.stock}
-</td>
-
-<td>
-${product.minimum}
-</td>
-
-<td>
-
-${status}
-
-<br><br>
-
-<button
-class="gold"
-onclick="updateStock(${index},1)">
-+ Entrée
-</button>
-
-<button
-class="dark"
-onclick="updateStock(${index},-1)">
-− Sortie
-</button>
-
-</td>
-
-`;
-
-stockTable.appendChild(row);
-
-});
+?
+"OUVERTE"
+:
+"FERMÉE";
 
 
 /* ALERTES */
 
-const alerts=
+const low=
 data.products.filter(
-p=>p.stock<=p.minimum
+product=>
+product.stock<=product.minimum
 );
 
 
-document
-.getElementById("alerts")
-.innerHTML=
-alerts.length
-
-?
-alerts.map(
-p=>`
-<p class="alert">
-⚠️ ${p.name} :
-${p.stock} restant(s)
-</p>
-`
-).join("")
-
-:
-"<p class='success'>Aucune alerte.</p>";
+const alerts=
+document.getElementById(
+"alerts"
+);
 
 
-/* COMMANDES */
+if(low.length===0){
 
-const ordersList=
-document.getElementById("ordersList");
+alerts.innerHTML=
+"<p class='success'>✓ Aucun produit en stock faible.</p>";
 
+}
+else{
 
-if(data.orders.length===0){
+alerts.innerHTML=
+low.map(
+product=>`
 
-ordersList.innerHTML=
-"Aucune commande.";
+<div class="alert">
 
-}else{
-
-ordersList.innerHTML=
-data.orders
-.slice()
-.reverse()
-.slice(0,10)
-.map(order=>`
-
-<p>
-
-<b>
-Table ${order.table}
-</b>
-
-—
-
-${money(order.total)}
+⚠️ <strong>
+${product.name}
+</strong>
 
 <br>
 
-<span class="badge">
-${order.status}
-</span>
+Stock restant :
+${product.stock}
 
-</p>
+</div>
 
-`)
-.join("");
+`
+).join("");
+
+}
 
 }
 
 
-/* CAISSE */
+
+/* =====================================================
+   CAISSE AFFICHAGE
+===================================================== */
+
+function renderCash(){
+
+const revenue=
+getRevenue();
+
+const expenses=
+getExpenses();
+
+
+const balance=
+data.cash.opening+
+revenue-
+expenses;
+
+
+document
+.getElementById("cashBalance")
+.textContent=
+money(balance);
+
+
+document
+.getElementById("cashOpening")
+.textContent=
+money(data.cash.opening);
+
 
 document
 .getElementById("cashMessage")
-.textContent=
+.innerHTML=
 data.cash.open
 
 ?
-"Caisse ouverte — Fond : "+
-money(data.cash.opening)
+"<span class='success'>● Caisse ouverte</span>"
 
 :
+
 "Caisse fermée";
 
 }
 
 
 
-/* =========================
+/* =====================================================
+   COMPTABILITE
+===================================================== */
+
+function renderAccounting(){
+
+const income=
+getRevenue();
+
+const expense=
+getExpenses();
+
+const result=
+income-expense;
+
+
+document
+.getElementById("accountingIncome")
+.textContent=
+money(income);
+
+
+document
+.getElementById("accountingExpense")
+.textContent=
+money(expense);
+
+
+document
+.getElementById("accountingResult")
+.textContent=
+money(result);
+
+}
+
+
+
+/* =====================================================
+   RAFRAICHISSEMENT GENERAL
+===================================================== */
+
+function refresh(){
+
+loadProducts();
+
+renderCart();
+
+renderOrders();
+
+renderStock();
+
+renderDashboard();
+
+renderCash();
+
+renderAccounting();
+
+}
+
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function formatDate(date){
+
+return new Date(date)
+.toLocaleString(
+"fr-FR",
+{
+dateStyle:"short",
+timeStyle:"short"
+}
+);
+
+}
+
+
+/* =====================================================
    HORLOGE
-========================= */
+===================================================== */
 
 function updateClock(){
 
@@ -1678,7 +2836,13 @@ document
 .getElementById("clock")
 .textContent=
 new Date()
-.toLocaleString("fr-FR");
+.toLocaleString(
+"fr-FR",
+{
+dateStyle:"short",
+timeStyle:"medium"
+}
+);
 
 }
 
@@ -1688,8 +2852,100 @@ updateClock,
 1000
 );
 
-
 updateClock();
+
+
+
+/* =====================================================
+   IMPRESSION
+===================================================== */
+
+function printPage(){
+
+window.print();
+
+}
+
+
+
+/* =====================================================
+   RAPPORT
+===================================================== */
+
+function generateReport(){
+
+const revenue=
+getRevenue();
+
+const expenses=
+getExpenses();
+
+const profit=
+revenue-expenses;
+
+
+const report=
+`
+THE BOSS LOUNGE
+RAPPORT DE GESTION
+============================
+
+Date :
+${new Date().toLocaleString("fr-FR")}
+
+RECETTES ENCAISSEES :
+${money(revenue)}
+
+DEPENSES :
+${money(expenses)}
+
+RESULTAT :
+${money(profit)}
+
+COMMANDES :
+${data.orders.length}
+
+COMMANDES PAYEES :
+${data.orders.filter(
+o=>o.status==="Payée"
+).length}
+
+============================
+`;
+
+
+const blob=
+new Blob(
+[report],
+{
+type:"text/plain;charset=utf-8"
+}
+);
+
+
+const url=
+URL.createObjectURL(blob);
+
+
+const a=
+document.createElement("a");
+
+a.href=url;
+
+a.download=
+"Rapport_The_Boss_Lounge.txt";
+
+a.click();
+
+URL.revokeObjectURL(url);
+
+}
+
+
+
+/* =====================================================
+   DEMARRAGE
+===================================================== */
 
 refresh();
 
